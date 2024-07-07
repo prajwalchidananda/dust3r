@@ -11,7 +11,9 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN git clone --branch prajwal/visodom --recursive https://github.com/prajwalchidananda/dust3r.git /dust3r
+RUN git clone --branch prajwal/visodom --recursive https://github.com/prajwalchidananda/dust3r.git /dust3r \
+    && cd /dust3r \
+    && git checkout 5cb5f49
 WORKDIR /dust3r
 RUN pip install -r requirements.txt
 RUN pip install -r requirements_optional.txt
