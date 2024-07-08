@@ -28,8 +28,8 @@ if __name__ == "__main__":
         raise ValueError("Images and masks must have the same length")
 
     if len(args.images) == 1:
-        image_paths = glob.glob(args.images[0])
-        mask_paths = glob.glob(args.masks[0])
+        image_paths = sorted(glob.glob(args.images[0]))
+        mask_paths = sorted(glob.glob(args.masks[0]))
     else:
         image_paths = args.images
         mask_paths = args.masks
@@ -37,7 +37,7 @@ if __name__ == "__main__":
     for image_path, mask_path in zip(image_paths, mask_paths):
         image = cv2.imread(image_path)
         mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
-        
+
         mask = cv2.dilate(mask, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (args.dilate_kernel, args.dilate_kernel)))
         mask = cv2.GaussianBlur(mask, (args.blur_kernel, args.blur_kernel), 0)
 

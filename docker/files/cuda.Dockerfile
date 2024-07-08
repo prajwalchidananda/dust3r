@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN git clone --branch prajwal/visodom --recursive https://github.com/prajwalchidananda/dust3r.git /dust3r \
     && cd /dust3r \
-    && git checkout 5fca1b6
+    && git checkout c9210d0
 WORKDIR /dust3r
 RUN pip install -r requirements.txt
 RUN pip install -r requirements_optional.txt
